@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar for chat history -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <button id="new-chat-btn" class="new-chat-btn">+ New Chat</button>
+            <button id="toggle-sidebar" class="toggle-sidebar">☰</button>
+        </div>
+        <div class="chat-history" id="chat-history">
+            <!-- Chat sessions will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Main chat container -->
+    <div id="main-container" class="main-container">
+        <!-- Header with settings -->
+        <div class="header">
+            <div class="header-content">
+                <h1>ChatGPT Clone</h1>
+                <div class="header-controls">
+                    <div id="credits-display" class="credits-display hidden">
+                        <span class="credits-label">Tokens:</span>
+                        <span id="credits-amount" class="credits-amount">Loading...</span>
+                        <button id="refresh-credits" class="refresh-credits-btn" title="Refresh credits">🔄</button>
+                    </div>
+                    <button id="settings-btn" class="settings-btn">⚙️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings panel -->
+        <div id="settings-panel" class="settings-panel hidden">
+            <div class="settings-content">
+                <h3>Settings</h3>
+                <div class="setting-group">
+                    <label for="api-key">OpenRouter API Key:</label>
+                    <input type="password" id="api-key" placeholder="Enter your OpenRouter API key">
+                    <small>Get your API key from <a href="https://openrouter.ai" target="_blank">openrouter.ai</a></small>
+                </div>
+                <div class="setting-group">
+                    <label for="model-select">AI Model:</label>
+                    <select id="model-select">
+                        <option value="">Loading models...</option>
+                    </select>
+                    <small>Models will be loaded automatically from OpenRouter</small>
+                </div>
+                <div class="setting-group">
+                    <label for="max-tokens">Max Tokens:</label>
+                    <input type="number" id="max-tokens" placeholder="Enter max tokens (e.g., 4000)" min="1" max="32000" value="4000">
+                    <small>Maximum number of tokens to generate in the response (1-32000)</small>
+                </div>
+                <button id="save-settings" class="save-settings-btn">Save Settings</button>
+                <button id="close-settings" class="close-settings-btn">Close</button>
+            </div>
+        </div>
+
+        <!-- Chat messages area -->
+        <div id="chat-container" class="chat-container">
+            <div id="messages" class="messages">
+                <!-- Welcome message -->
+                <div class="welcome-message">
+                    <h2>Welcome to ChatGPT Clone</h2>
+                    <p>To get started:</p>
+                    <ol>
+                        <li>Click the settings button (⚙️) to configure your API key and model</li>
+                        <li>Enter your OpenRouter API key</li>
+                        <li>Select an AI model</li>
+                        <li>Start chatting!</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input area -->
+        <div class="input-area">
+            <div class="input-container">
+                <div class="file-upload-area">
+                    <input type="file" id="file-input" accept="image/*,.pdf,.txt,.doc,.docx" multiple style="display: none;">
+                    <button id="file-upload-btn" class="file-upload-btn" title="Upload files">📎</button>
+                    <div id="uploaded-files" class="uploaded-files"></div>
+                </div>
+                <div class="message-input-container">
+                    <textarea id="message-input" placeholder="Type your message here..." rows="1"></textarea>
+                    <button id="send-btn" class="send-btn" disabled>➤</button>
+                </div>
+            </div>
+            <div class="input-footer">
+                <small>ChatGPT Clone can make mistakes. Consider checking important information.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Thinking...</p>
+    </div>
+
+    <!-- Error modal -->
+    <div id="error-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Error</h3>
+            <p id="error-message"></p>
+            <button id="close-error" class="modal-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Confirm</h3>
+            <p id="confirm-message"></p>
+            <div class="modal-buttons">
+                <button id="confirm-yes" class="modal-btn confirm-btn">Yes</button>
+                <button id="confirm-no" class="modal-btn cancel-btn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
